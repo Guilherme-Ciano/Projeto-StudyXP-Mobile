@@ -1,26 +1,26 @@
 import 'package:flutter/material.dart';
-import 'package:studyxp_mobile/model/alunoModel.dart';
+import 'package:studyxp_mobile/model/professorModel.dart';
 import 'package:studyxp_mobile/services/snackbarService.dart';
 
-class MyHomePageAluno extends StatefulWidget {
-  final Aluno aluno;
-  MyHomePageAluno({Key? key, required this.aluno}) : super(key: key);
+class MyHomePageProf extends StatefulWidget {
+  final Professor prof;
+  MyHomePageProf({Key? key, required this.prof}) : super(key: key);
 
   @override
   _MyHomePageState createState() => _MyHomePageState();
 }
 
-class _MyHomePageState extends State<MyHomePageAluno> {
+class _MyHomePageState extends State<MyHomePageProf> {
   @override
   Widget build(BuildContext context) {
     MensagemDeAlertaOK(
-      titulo: 'Bem Vindo, ' + widget.aluno.nome,
+      titulo: 'Bem Vindo, ' + widget.prof.nome,
       descricao: '',
     );
 
     return Scaffold(
       body: Card(
-        child: Text(widget.aluno.nome),
+        child: Text(widget.prof.nome),
       ),
     );
   }

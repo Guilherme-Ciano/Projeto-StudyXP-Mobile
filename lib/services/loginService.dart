@@ -2,7 +2,10 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart';
 import 'package:studyxp_mobile/model/alunoModel.dart';
+import 'package:studyxp_mobile/model/professorModel.dart';
+import 'package:studyxp_mobile/services/snackbarService.dart';
 import 'package:studyxp_mobile/view/home/homepage.dart';
+import 'package:studyxp_mobile/view/home/homepageProf.dart';
 
 Future login(
   String email,
@@ -21,7 +24,7 @@ Future login(
   return Navigator.push(
     context,
     MaterialPageRoute(
-      builder: (context) => MyHomePage(
+      builder: (context) => MyHomePageAluno(
         aluno: Aluno.fromJson(
           jsonDecode(res.body),
         ),
