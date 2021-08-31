@@ -5,20 +5,19 @@ import 'package:studyxp_mobile/model/tarefaModel.dart';
 import 'package:studyxp_mobile/view/tarefasPendentes.dart';
 
 Future getTarefas(BuildContext context) async {
-  final res = await post(
+  Client cliente = Client();
+  Response res = await cliente.get(
     Uri.parse("http://localhost:9090/alunos/tarefas/index"),
   );
 
   if (res.statusCode == 200) {
-    var response = res.body;
-    Future<dynamic> tarefas = jsonDecode(response);
+    List response = jsonDecode(res.body);
+    print(response);
+
+    List<Tarefa> tarefas =
+        response.map((dynamic item) => Tarefa.fromJson(item)).toList();
     print(tarefas);
 
-    return Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (context) => TarefasPendentes(),
-      ),
-    );
+    return tarefas;
   }
 }

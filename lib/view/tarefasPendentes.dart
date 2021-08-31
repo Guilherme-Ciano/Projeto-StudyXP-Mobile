@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:studyxp_mobile/design/design.dart';
 import 'package:studyxp_mobile/model/alunoModel.dart';
 import 'package:studyxp_mobile/model/tarefaModel.dart';
 import 'package:studyxp_mobile/services/tarefasService.dart';
@@ -13,10 +14,8 @@ class TarefasPendentes extends StatefulWidget {
 class _TarefasPendentesState extends State<TarefasPendentes> {
   @override
   Widget build(BuildContext context) {
-    final Future<dynamic> tarefas = getTarefas(context);
-
     return FutureBuilder(
-      future: tarefas,
+      future: getTarefas(context),
       builder: (BuildContext context, AsyncSnapshot snapshot) {
         if (!snapshot.hasData) {
           return Container(
@@ -37,13 +36,19 @@ class _TarefasPendentesState extends State<TarefasPendentes> {
           );
         } else {
           return ListView.builder(
+            scrollDirection: Axis.vertical,
+            itemCount: snapshot.data.lenght,
             itemBuilder: (BuildContext context, int index) {
-              final Tarefa tarefa = snapshot.data[index];
+              final List<Tarefa> tarefas = snapshot.data;
+              final tarefa = tarefas[index];
               return ListTile(
                 leading: Icon(Icons.today_outlined),
                 title: Text(tarefa.titulo),
                 subtitle: Text(tarefa.xp.toString() + 'xp'),
-                trailing: Text(tarefa.limite_data),
+                trailing: Text(
+                  tarefa.limite_data,
+                  style: TextStyle(color: ControleDeCor.Buttons),
+                ),
               );
             },
           );
