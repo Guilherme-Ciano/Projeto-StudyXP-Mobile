@@ -54,6 +54,7 @@ flutter:
     - lib/design/images/Notifications.png
     - lib/design/images/ShowAll.png
     - lib/design/images/Tasks.png
+    - lib/design/images/chill.png
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
 

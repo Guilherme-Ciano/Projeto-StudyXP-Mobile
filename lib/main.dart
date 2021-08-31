@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:studyxp_mobile/view/welcome/introducao.dart';
+import 'package:studyxp_mobile/view/welcome/loginForm.dart';
 
 void main() {
   runApp(MyApp());
@@ -15,7 +16,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: IntroducaoAnimada(),
+      home: FormLogin(), // IntroducaoAnimada
     );
   }
 }

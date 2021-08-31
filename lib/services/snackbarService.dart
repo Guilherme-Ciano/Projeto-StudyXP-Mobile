@@ -23,7 +23,9 @@ class MensagemDeAlertaOK extends StatelessWidget {
               color: ControleDeCor.Tema,
             ),
           ),
-          onPressed: () {},
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
         ),
       ],
     );
