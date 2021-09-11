@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart';
 import 'package:studyxp_mobile/model/tarefaModel.dart';
-import 'package:studyxp_mobile/view/tarefasPendentes.dart';
+import 'package:studyxp_mobile/view/home/tarefasPendentes.dart';
 
 Future getTarefas(BuildContext context) async {
   Client cliente = Client();

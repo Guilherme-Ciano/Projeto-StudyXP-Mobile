@@ -9,10 +9,9 @@ import 'package:studyxp_mobile/view/home/homepage.dart';
 Future login(
   String email,
   String password,
-  Client client,
   BuildContext context,
 ) async {
-  final res = await client.post(
+  final res = await Client().post(
     Uri.parse("http://localhost:9090/mobile/login"),
     body: {
       "email": email,

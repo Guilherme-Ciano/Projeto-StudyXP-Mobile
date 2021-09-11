@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:studyxp_mobile/view/sweetLoad/splashLoad.dart';
 import 'package:studyxp_mobile/view/welcome/introducao.dart';
 import 'package:studyxp_mobile/view/welcome/loginForm.dart';
 
@@ -16,7 +17,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: FormLogin(), // IntroducaoAnimada
+      home: SplashLoad(), // IntroducaoAnimada
     );
   }
 }

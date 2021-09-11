@@ -107,7 +107,6 @@ class _FormLoginState extends State<FormLogin> {
                           login(
                             emailController.text,
                             passwordController.text,
-                            Client(),
                             context,
                           ),
                         );

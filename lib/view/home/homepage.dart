@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:studyxp_mobile/design/design.dart';
 import 'package:studyxp_mobile/model/alunoModel.dart';
-import 'package:studyxp_mobile/view/tarefasPendentes.dart';
+import 'package:studyxp_mobile/view/home/tarefasPendentes.dart';
 
 class MyHomePageAluno extends StatefulWidget {
   final Aluno aluno;
