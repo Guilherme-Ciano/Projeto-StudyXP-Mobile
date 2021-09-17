@@ -60,62 +60,66 @@ class _TarefasPendentesState extends State<TarefasPendentes> {
                 stts = true;
               }
 
-              return ExpansionTileCard(
-                leading: Icon(Icons.today_outlined),
-                title: Text(tarefa.titulo),
-                subtitle: Text(tarefa.xp.toString() + 'xp'),
-                trailing: Text(
-                  "Data: " +
-                      formatter.format(DateTime.parse(tarefa.limite_data)),
-                  style: TextStyle(
-                      color: stts ? Colors.amber : ControleDeCor.Buttons),
-                ),
-                children: <Widget>[
-                  Divider(
-                    thickness: 1.0,
-                    height: 1.0,
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(2.0),
-                    child: Align(
-                      alignment: Alignment.centerLeft,
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: 16.0,
-                          vertical: 8.0,
-                        ),
-                        child: Text(tarefa.descricao,
-                            style: Theme.of(context).textTheme.bodyText2),
-                      ),
+              return Column(
+                children: [
+                  ExpansionTileCard(
+                    leading: Icon(Icons.today_outlined),
+                    title: Text(
+                      tarefa.titulo,
                     ),
-                  ),
-                  ButtonBar(
-                    alignment: MainAxisAlignment.spaceAround,
-                    buttonHeight: 52,
-                    buttonMinWidth: 90,
-                    children: [
-                      TextButton.icon(
-                        onPressed: () {},
-                        icon: Icon(Icons.description_outlined),
-                        label: Text("Vizualizar arquivos"),
+                    subtitle: Text(tarefa.xp.toString() + 'xp'),
+                    trailing: Text(
+                      "Data: " +
+                          formatter.format(DateTime.parse(tarefa.limite_data)),
+                      style: TextStyle(
+                          color: stts ? Colors.amber : ControleDeCor.Buttons),
+                    ),
+                    children: <Widget>[
+                      Divider(
+                        thickness: 1.0,
+                        height: 1.0,
                       ),
-                      TextButton.icon(
-                        onPressed: () {},
-                        icon: Icon(Icons.done),
-                        label: Text("Concluir tarefa"),
+                      Padding(
+                        padding: const EdgeInsets.all(2.0),
+                        child: Align(
+                          alignment: Alignment.centerLeft,
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(
+                              horizontal: 16.0,
+                              vertical: 8.0,
+                            ),
+                            child: Text(tarefa.descricao,
+                                style: Theme.of(context).textTheme.bodyText2),
+                          ),
+                        ),
+                      ),
+                      ButtonBar(
+                        alignment: MainAxisAlignment.spaceAround,
+                        buttonHeight: 52,
+                        buttonMinWidth: 90,
+                        children: [
+                          TextButton.icon(
+                            onPressed: () {},
+                            icon: Icon(Icons.description_outlined),
+                            label: Text("Vizualizar arquivos"),
+                          ),
+                          TextButton.icon(
+                            onPressed: () {
+                              setState(() {});
+
+                              concluirTarefa(context, tarefa.id, tarefa);
+                            },
+                            icon: Icon(Icons.done),
+                            label: Text("Concluir tarefa"),
+                          )
+                        ],
                       )
                     ],
+                  ),
+                  const SizedBox(
+                    height: 5,
                   )
                 ],
-              );
-              return ListTile(
-                leading: Icon(Icons.today_outlined),
-                title: Text(tarefa.titulo),
-                subtitle: Text(tarefa.xp.toString() + 'xp'),
-                trailing: Text(
-                  tarefa.limite_data,
-                  style: TextStyle(color: ControleDeCor.Buttons),
-                ),
               );
             },
           );

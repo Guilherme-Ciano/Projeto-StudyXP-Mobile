@@ -4,7 +4,8 @@ class Tarefa {
   final String classe;
   final String limite_data;
   final int xp;
-  final String flag;
+  final int id;
+  String flag;
   final String professorId;
 
   Tarefa({
@@ -13,6 +14,7 @@ class Tarefa {
     required this.classe,
     required this.limite_data,
     required this.xp,
+    required this.id,
     required this.flag,
     required this.professorId,
   });
@@ -24,6 +26,7 @@ class Tarefa {
       classe: json['classe'] as String,
       limite_data: json['limite_data'] as String,
       xp: json['xp'] as int,
+      id: json['id'] as int,
       flag: json['flag'] as String,
       professorId: json['professorId'] as String,
     );

@@ -21,3 +21,20 @@ Future<List<Tarefa>> getTarefas(BuildContext context) async {
     return nullable;
   }
 }
+
+Future concluirTarefa(BuildContext context, int id, Tarefa tarefa) async {
+  Client cliente = Client();
+  tarefa.flag = "concluida";
+
+  print(tarefa.flag);
+
+  Object post = {"flag": tarefa.flag};
+  Response res = await cliente.post(
+    Uri.parse(
+      "http://localhost:9090/professores/tarefas/concluirtarefa?id=" +
+          id.toString(),
+    ),
+  );
+
+  print(res.body);
+}
