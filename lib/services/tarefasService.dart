@@ -4,7 +4,7 @@ import 'package:http/http.dart';
 import 'package:studyxp_mobile/model/tarefaModel.dart';
 import 'package:studyxp_mobile/view/home/tarefasPendentes.dart';
 
-Future getTarefas(BuildContext context) async {
+Future<List<Tarefa>> getTarefas(BuildContext context) async {
   Client cliente = Client();
   Response res = await cliente.get(
     Uri.parse("http://localhost:9090/alunos/tarefas/index"),
@@ -12,12 +12,12 @@ Future getTarefas(BuildContext context) async {
 
   if (res.statusCode == 200) {
     List response = jsonDecode(res.body);
-    print(response);
-
     List<Tarefa> tarefas =
         response.map((dynamic item) => Tarefa.fromJson(item)).toList();
-    print(tarefas);
 
     return tarefas;
+  } else {
+    List<Tarefa> nullable = [];
+    return nullable;
   }
 }

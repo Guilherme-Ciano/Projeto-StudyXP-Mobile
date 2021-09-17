@@ -46,8 +46,11 @@ class _MyHomePageState extends State<MyHomePageAluno> {
                 dense: true,
               ),
             ),
-            Center(
-              child: TarefasPendentes(),
+            SingleChildScrollView(
+              child: Container(
+                height: MediaQuery.of(context).size.height - 136,
+                child: TarefasPendentes(),
+              ),
             ),
           ],
         ),
