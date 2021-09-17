@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:studyxp_mobile/model/alunoModel.dart';
 import 'package:studyxp_mobile/model/professorModel.dart';
 import 'package:studyxp_mobile/services/snackbarService.dart';
@@ -31,6 +32,9 @@ Future login(
         ),
       );
     } else {
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      prefs.setString('User', email);
+      prefs.setString('UserPass', password);
       return Navigator.push(
         context,
         MaterialPageRoute(
