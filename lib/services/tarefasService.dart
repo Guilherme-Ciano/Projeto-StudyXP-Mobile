@@ -34,7 +34,6 @@ Future concluirTarefa(BuildContext context, int id, Tarefa tarefa) async {
       "http://localhost:9090/professores/tarefas/concluirtarefa?id=" +
           id.toString(),
     ),
+    body: post,
   );
-
-  print(res.body);
 }

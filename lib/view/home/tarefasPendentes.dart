@@ -132,11 +132,13 @@ class _TarefasPendentesState extends State<TarefasPendentes> {
                                         width: 7,
                                       ),
                                       OutlinedButton.icon(
-                                        onPressed: () {
-                                          setState(() {
-                                            concluirTarefa(
-                                                context, tarefa.id, tarefa);
-                                          });
+                                        onPressed: () async {
+                                          await concluirTarefa(
+                                            context,
+                                            tarefa.id,
+                                            tarefa,
+                                          );
+                                          setState(() {});
                                         },
                                         icon: Icon(Icons.done),
                                         label: Padding(
