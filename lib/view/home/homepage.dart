@@ -14,25 +14,16 @@ class MyHomePageAluno extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePageAluno> {
+  int _selectedIndex = 0;
+
+  final List<Widget> _pags = [
+    TarefasPendentes(),
+    TarefasConcluidas(),
+    TelaPrincipalConfig(),
+  ];
+
   @override
   Widget build(BuildContext context) {
-    int _selectedIndex = 0;
-
-    List pags = [
-      TarefasPendentes(),
-      TarefasConcluidas(),
-      TelaPrincipalConfig(),
-    ];
-
-    void _onItemTapped(int index) {
-      if (index >= pags.length) {
-        index = 0;
-      }
-      setState(() {
-        _selectedIndex = index;
-      });
-    }
-
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.all(8.0),
@@ -42,7 +33,6 @@ class _MyHomePageState extends State<MyHomePageAluno> {
               child: ListTile(
                 leading: Icon(
                   Icons.account_circle_outlined,
-                  color: ControleDeCor.Preto,
                 ),
                 trailing: Text('Nível: ' + widget.aluno.level.toString()),
                 subtitle: Text(widget.aluno.grade.toString() + '° Ano'),
@@ -58,16 +48,13 @@ class _MyHomePageState extends State<MyHomePageAluno> {
             SingleChildScrollView(
               child: Container(
                 height: MediaQuery.of(context).size.height - 136,
-                child: pags[2],
+                child: _pags[_selectedIndex],
               ),
             ),
           ],
         ),
       ),
       bottomNavigationBar: BottomNavigationBar(
-        currentIndex: _selectedIndex,
-        selectedItemColor: ControleDeCor.Tema,
-        onTap: _onItemTapped,
         items: [
           BottomNavigationBarItem(
             icon: Icon(Icons.article_outlined),
@@ -82,7 +69,16 @@ class _MyHomePageState extends State<MyHomePageAluno> {
             label: 'Perfil',
           )
         ],
+        currentIndex: _selectedIndex,
+        selectedItemColor: ControleDeCor.Tema,
+        onTap: onTabTapped,
       ),
     );
+  }
+
+  void onTabTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
   }
 }

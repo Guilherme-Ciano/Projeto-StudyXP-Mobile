@@ -2,10 +2,26 @@ import 'package:flutter/material.dart';
 
 class ControleDeCor {
   static final lightTheme = ThemeData(
+    colorScheme: ColorScheme.light(),
     backgroundColor: Color(0xFFEDF0F2),
     scaffoldBackgroundColor: Color(0xFEFEFEFE),
     primaryColor: Color(0xFF3f51b5),
-    colorScheme: ColorScheme.light(),
+    accentColor: Color(0xFF5070B1),
+    outlinedButtonTheme: OutlinedButtonThemeData(
+      style: TextButton.styleFrom(
+        primary: Color(0xFF3f51b5),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.all(
+            Radius.circular(8.0),
+          ),
+        ),
+        alignment: Alignment.center,
+        side: BorderSide(
+          color: Color(0xFF3f51b5),
+          width: 2,
+        ),
+      ),
+    ),
   );
 
   static final darkTheme = ThemeData(
@@ -16,7 +32,7 @@ class ControleDeCor {
     colorScheme: ColorScheme.dark(),
     outlinedButtonTheme: OutlinedButtonThemeData(
       style: TextButton.styleFrom(
-        primary: Color(0xFF3f51b5),
+        primary: Color(0xFEFEFEFE),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.all(
             Radius.circular(8.0),
