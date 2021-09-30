@@ -57,7 +57,14 @@ class TopBarSkipView extends StatelessWidget {
                 ),
                 SlideTransition(
                   position: _skipAnimation,
-                  child: TextButton(
+                  child: OutlinedButton(
+                    style: OutlinedButton.styleFrom(
+                      padding: EdgeInsets.all(15),
+                      side: BorderSide(
+                        color: ControleDeCor.lightTheme.primaryColor,
+                        width: 2,
+                      ),
+                    ),
                     onPressed: onSkipClick,
                     child: Text(
                       'Pular',

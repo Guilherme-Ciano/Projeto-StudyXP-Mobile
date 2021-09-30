@@ -35,7 +35,6 @@ class _IntroducaoAnimadaState extends State<IntroducaoAnimada>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: ControleDeCor.Branco,
       body: ClipRect(
         child: Stack(
           children: [

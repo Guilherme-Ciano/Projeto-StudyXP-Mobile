@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:studyxp_mobile/design/design.dart';
 import 'package:studyxp_mobile/model/alunoModel.dart';
+import 'package:studyxp_mobile/view/config/telaConfig.dart';
+import 'package:studyxp_mobile/view/home/tarefasConcluidas.dart';
 import 'package:studyxp_mobile/view/home/tarefasPendentes.dart';
 
 class MyHomePageAluno extends StatefulWidget {
@@ -18,10 +20,17 @@ class _MyHomePageState extends State<MyHomePageAluno> {
 
     List pags = [
       TarefasPendentes(),
+      TarefasConcluidas(),
+      TelaPrincipalConfig(),
     ];
 
-    void a(int i) {
-      pags[i];
+    void _onItemTapped(int index) {
+      if (index >= pags.length) {
+        index = 0;
+      }
+      setState(() {
+        _selectedIndex = index;
+      });
     }
 
     return Scaffold(
@@ -49,13 +58,16 @@ class _MyHomePageState extends State<MyHomePageAluno> {
             SingleChildScrollView(
               child: Container(
                 height: MediaQuery.of(context).size.height - 136,
-                child: TarefasPendentes(),
+                child: pags[2],
               ),
             ),
           ],
         ),
       ),
       bottomNavigationBar: BottomNavigationBar(
+        currentIndex: _selectedIndex,
+        selectedItemColor: ControleDeCor.Tema,
+        onTap: _onItemTapped,
         items: [
           BottomNavigationBarItem(
             icon: Icon(Icons.article_outlined),
@@ -70,9 +82,6 @@ class _MyHomePageState extends State<MyHomePageAluno> {
             label: 'Perfil',
           )
         ],
-        currentIndex: _selectedIndex,
-        selectedItemColor: ControleDeCor.Tema,
-        onTap: a,
       ),
     );
   }
