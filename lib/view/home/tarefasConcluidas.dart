@@ -116,7 +116,14 @@ class _TarefasConcluidasState extends State<TarefasConcluidas> {
                                   ),
                                 ),
                                 OutlinedButton.icon(
-                                  onPressed: () {},
+                                  onPressed: () async {
+                                    await voltarTarefa(
+                                      context,
+                                      tarefa.id,
+                                      tarefa,
+                                    );
+                                    setState(() {});
+                                  },
                                   icon: Icon(Icons.restore),
                                   label: Padding(
                                     padding: const EdgeInsets.all(8.0),
