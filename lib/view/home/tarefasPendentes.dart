@@ -17,10 +17,10 @@ class _TarefasPendentesState extends State<TarefasPendentes> {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder<List<Tarefa>>(
-        future: getTarefas(context),
+        future: getTarefasPendentes(context),
         builder: (BuildContext context, AsyncSnapshot snapshot) {
           if (snapshot.connectionState == ConnectionState.done) {
-            if (!snapshot.hasData) {
+            if (!snapshot.hasData || snapshot.data.length == 0) {
               return Container(
                 child: Center(
                   child: Column(

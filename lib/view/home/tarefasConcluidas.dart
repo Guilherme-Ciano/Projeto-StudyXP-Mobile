@@ -17,21 +17,22 @@ class _TarefasConcluidasState extends State<TarefasConcluidas> {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder<List<Tarefa>>(
-      future: getTarefas(context),
+      future: getTarefasConcluidas(context),
       builder: (BuildContext context, AsyncSnapshot snapshot) {
         if (snapshot.connectionState == ConnectionState.done) {
-          if (!snapshot.hasData) {
+          if (!snapshot.hasData || snapshot.data.length == 0) {
             return Container(
+              margin: EdgeInsets.only(top: 50),
               child: Center(
                 child: Column(
                   children: [
                     Padding(
                       padding: const EdgeInsets.all(20.0),
                       child: Image.asset(
-                        'lib/design/images/chill.png',
+                        'lib/design/images/Erro.png',
                       ),
                     ),
-                    Text('DNão há tarefas concluídas.')
+                    Text('Não há tarefas concluídas.')
                   ],
                 ),
               ),
