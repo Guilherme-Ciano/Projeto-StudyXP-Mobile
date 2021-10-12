@@ -7,7 +7,15 @@ import 'package:studyxp_mobile/model/tarefaModel.dart';
 import 'package:studyxp_mobile/services/tarefasService.dart';
 
 class TarefasPendentes extends StatefulWidget {
-  const TarefasPendentes({Key? key}) : super(key: key);
+  final int alunoID;
+  final int alunoLevel;
+  final Function() notifyParent;
+  const TarefasPendentes({
+    Key? key,
+    required this.alunoID,
+    required this.alunoLevel,
+    required this.notifyParent,
+  }) : super(key: key);
 
   @override
   _TarefasPendentesState createState() => _TarefasPendentesState();
@@ -137,8 +145,10 @@ class _TarefasPendentesState extends State<TarefasPendentes> {
                                             context,
                                             tarefa.id,
                                             tarefa,
+                                            widget.alunoID,
+                                            widget.alunoLevel,
                                           );
-                                          setState(() {});
+                                          widget.notifyParent();
                                         },
                                         icon: Icon(Icons.done),
                                         label: Padding(

@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart';
+import 'package:restart_app/restart_app.dart';
 import 'package:studyxp_mobile/model/tarefaModel.dart';
 import 'package:studyxp_mobile/view/home/tarefasPendentes.dart';
 
@@ -40,11 +41,15 @@ Future<List<Tarefa>> getTarefasPendentes(BuildContext context) async {
   }
 }
 
-Future concluirTarefa(BuildContext context, int id, Tarefa tarefa) async {
+Future concluirTarefa(
+  BuildContext context,
+  int id,
+  Tarefa tarefa,
+  int alunoID,
+  int alunoLVL,
+) async {
   Client cliente = Client();
   tarefa.flag = "concluida";
-
-  print(tarefa.flag);
 
   Object post = {"flag": tarefa.flag};
   Response res = await cliente.post(
@@ -53,6 +58,15 @@ Future concluirTarefa(BuildContext context, int id, Tarefa tarefa) async {
           id.toString(),
     ),
     body: post,
+  );
+
+  Object post2 = {"level": (alunoLVL + 1).toString()};
+  print(post2);
+  Response res2 = await cliente.post(
+    Uri.parse(
+      "http://localhost:9090/alunos/update?id=" + alunoID.toString(),
+    ),
+    body: post2,
   );
 }
 

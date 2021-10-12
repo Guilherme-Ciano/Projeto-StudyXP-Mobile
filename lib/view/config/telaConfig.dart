@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:studyxp_mobile/design/design.dart';
+import 'package:studyxp_mobile/view/welcome/introducao.dart';
 
 class TelaPrincipalConfig extends StatefulWidget {
   const TelaPrincipalConfig({Key? key}) : super(key: key);
@@ -10,6 +12,17 @@ class TelaPrincipalConfig extends StatefulWidget {
 }
 
 class _TelaPrincipalConfigState extends State<TelaPrincipalConfig> {
+  getUserAccess() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.clear();
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => IntroducaoAnimada(),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -36,9 +49,15 @@ class _TelaPrincipalConfigState extends State<TelaPrincipalConfig> {
                   leading: Icon(
                     Icons.wb_sunny_outlined,
                     size: 50,
-                    //color: CoresDoApp.lightTheme.primaryColor,
+                    color: ControleDeCor.lightTheme.primaryColor,
                   ),
-                  title: Text('Alterar Tema'),
+                  title: Text(
+                    'Alterar Tema',
+                    style: TextStyle(
+                      color: ControleDeCor.lightTheme.primaryColor,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
                   subtitle: Text('Altere para modo Noturno ou Diurno'),
                   onTap: () {
                     final provider =
@@ -52,14 +71,22 @@ class _TelaPrincipalConfigState extends State<TelaPrincipalConfig> {
               ),
               Card(
                 child: ListTile(
-                  onTap: () {},
+                  onTap: () {
+                    getUserAccess();
+                  },
                   leading: Icon(
-                    Icons.room_service_outlined,
+                    Icons.logout_outlined,
                     size: 50,
-                    //color: CoresDoApp.lightTheme.primaryColor,
+                    color: ControleDeCor.lightTheme.primaryColor,
                   ),
-                  title: Text('Adicionar Mesa'),
-                  subtitle: Text('Adicione uma nova mesa ao sistema'),
+                  title: Text(
+                    'Logout',
+                    style: TextStyle(
+                      color: ControleDeCor.lightTheme.primaryColor,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  subtitle: Text('sair da conta ou alternar usuários'),
                 ),
               ),
             ],

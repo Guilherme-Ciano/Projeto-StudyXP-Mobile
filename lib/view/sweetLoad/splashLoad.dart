@@ -15,7 +15,7 @@ class SplashLoad extends StatefulWidget {
 
 class _SplashLoadState extends State<SplashLoad> with TickerProviderStateMixin {
   late final AnimationController _controller = AnimationController(
-    duration: const Duration(seconds: 3),
+    duration: const Duration(seconds: 1),
     vsync: this,
   )..repeat(reverse: true);
   late final Animation<double> _animation = CurvedAnimation(

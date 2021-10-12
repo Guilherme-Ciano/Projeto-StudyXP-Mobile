@@ -4,6 +4,7 @@ import 'package:studyxp_mobile/model/alunoModel.dart';
 import 'package:studyxp_mobile/view/config/telaConfig.dart';
 import 'package:studyxp_mobile/view/home/tarefasConcluidas.dart';
 import 'package:studyxp_mobile/view/home/tarefasPendentes.dart';
+import 'package:studyxp_mobile/view/sweetLoad/splashLoad.dart';
 
 class MyHomePageAluno extends StatefulWidget {
   final Aluno aluno;
@@ -16,14 +17,31 @@ class MyHomePageAluno extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePageAluno> {
   int _selectedIndex = 0;
 
-  final List<Widget> _pags = [
-    TarefasPendentes(),
-    TarefasConcluidas(),
-    TelaPrincipalConfig(),
-  ];
+  refresh() {
+    setState(() {});
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => SplashLoad(),
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
+    final int alunoID = widget.aluno.id;
+    final int alunoLVL = widget.aluno.level;
+
+    final List<Widget> _pags = [
+      TarefasPendentes(
+        alunoID: alunoID,
+        alunoLevel: alunoLVL,
+        notifyParent: refresh,
+      ),
+      TarefasConcluidas(),
+      TelaPrincipalConfig(),
+    ];
+
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.all(8.0),
