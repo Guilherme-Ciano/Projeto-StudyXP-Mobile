@@ -107,7 +107,6 @@ class _FormLoginState extends State<FormLogin> {
                     ),
                     child: ElevatedButton(
                       onPressed: () async {
-                        print('log');
                         await login(
                           emailController.text,
                           passwordController.text,

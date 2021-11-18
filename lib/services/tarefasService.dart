@@ -61,7 +61,6 @@ Future concluirTarefa(
   );
 
   Object post2 = {"level": (alunoLVL + 1).toString()};
-  print(post2);
   Response res2 = await cliente.post(
     Uri.parse(
       "http://localhost:9090/alunos/update?id=" + alunoID.toString(),
@@ -73,8 +72,6 @@ Future concluirTarefa(
 Future voltarTarefa(BuildContext context, int id, Tarefa tarefa) async {
   Client cliente = Client();
   tarefa.flag = "pendente";
-
-  print(tarefa.flag);
 
   Object post = {"flag": tarefa.flag};
   Response res = await cliente.post(

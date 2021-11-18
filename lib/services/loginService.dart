@@ -37,7 +37,6 @@ Future login(
       prefs.setString('UserPass', password);
 
       List<dynamic> resultado = jsonDecode(res.body);
-      print(resultado[0]);
       List<Aluno> al = resultado
           .map(
             (dynamic item) => Aluno.fromJson(item),
