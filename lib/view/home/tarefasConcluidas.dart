@@ -5,6 +5,7 @@ import 'package:studyxp_mobile/design/design.dart';
 import 'package:studyxp_mobile/model/alunoModel.dart';
 import 'package:studyxp_mobile/model/tarefaModel.dart';
 import 'package:studyxp_mobile/services/tarefasService.dart';
+import 'dart:html' as html;
 
 class TarefasConcluidas extends StatefulWidget {
   const TarefasConcluidas({Key? key}) : super(key: key);
@@ -109,7 +110,12 @@ class _TarefasConcluidasState extends State<TarefasConcluidas> {
                               buttonMinWidth: 90,
                               children: [
                                 OutlinedButton.icon(
-                                  onPressed: () {},
+                                  onPressed: () {
+                                    html.window.open(
+                                      tarefa.fileLink,
+                                      'new tab',
+                                    );
+                                  },
                                   icon: Icon(Icons.description_outlined),
                                   label: Padding(
                                     padding: const EdgeInsets.all(8.0),
