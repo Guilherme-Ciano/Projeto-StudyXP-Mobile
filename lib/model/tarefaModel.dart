@@ -3,6 +3,7 @@ class Tarefa {
   final String descricao;
   final String classe;
   final String limite_data;
+  final String fileLink;
   final int xp;
   final int id;
   String flag;
@@ -17,6 +18,7 @@ class Tarefa {
     required this.id,
     required this.flag,
     required this.professorId,
+    required this.fileLink,
   });
 
   factory Tarefa.fromJson(Map<String, dynamic> json) {
@@ -27,6 +29,7 @@ class Tarefa {
       limite_data: json['limite_data'] as String,
       xp: json['xp'] as int,
       id: json['id'] as int,
+      fileLink: json['fileLink'] as String,
       flag: json['flag'] as String,
       professorId: json['professorId'] as String,
     );

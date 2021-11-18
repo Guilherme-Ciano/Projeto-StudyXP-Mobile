@@ -1,10 +1,17 @@
+import 'dart:convert';
+import 'dart:typed_data';
+
 import 'package:expansion_tile_card/expansion_tile_card.dart';
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:http/http.dart';
 import 'package:intl/intl.dart';
 import 'package:studyxp_mobile/design/design.dart';
 import 'package:studyxp_mobile/model/alunoModel.dart';
 import 'package:studyxp_mobile/model/tarefaModel.dart';
+import 'package:studyxp_mobile/services/arquivosService.dart';
 import 'package:studyxp_mobile/services/tarefasService.dart';
+import 'dart:html' as html;
 
 class TarefasPendentes extends StatefulWidget {
   final int alunoID;
@@ -22,6 +29,20 @@ class TarefasPendentes extends StatefulWidget {
 }
 
 class _TarefasPendentesState extends State<TarefasPendentes> {
+  pegarArquivos() async {
+    FilePickerResult? result = await FilePicker.platform.pickFiles();
+    Uint8List? bytes = result!.files[0].bytes;
+    Object request = {
+      "file": base64Encode(bytes!),
+      "fileName": result.files[0].name
+    };
+
+    await Client().post(
+      Uri.parse("http://localhost:9090/alunos/img"),
+      body: request,
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return FutureBuilder<List<Tarefa>>(
@@ -118,7 +139,12 @@ class _TarefasPendentesState extends State<TarefasPendentes> {
                                   Row(
                                     children: [
                                       OutlinedButton.icon(
-                                        onPressed: () {},
+                                        onPressed: () {
+                                          html.window.open(
+                                            tarefa.fileLink,
+                                            'new tab',
+                                          );
+                                        },
                                         icon: Icon(Icons.description_outlined),
                                         label: Padding(
                                           padding: const EdgeInsets.all(8.0),
@@ -129,7 +155,9 @@ class _TarefasPendentesState extends State<TarefasPendentes> {
                                         width: 7,
                                       ),
                                       OutlinedButton.icon(
-                                        onPressed: () {},
+                                        onPressed: () {
+                                          pegarArquivos();
+                                        },
                                         icon: Icon(Icons.add_to_drive_outlined),
                                         label: Padding(
                                           padding: const EdgeInsets.all(8.0),

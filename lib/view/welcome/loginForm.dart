@@ -1,3 +1,7 @@
+import 'dart:convert';
+import 'dart:typed_data';
+
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart';
 import 'package:studyxp_mobile/design/design.dart';
@@ -102,13 +106,12 @@ class _FormLoginState extends State<FormLogin> {
                       right: 4,
                     ),
                     child: ElevatedButton(
-                      onPressed: () {
-                        print(
-                          login(
-                            emailController.text,
-                            passwordController.text,
-                            context,
-                          ),
+                      onPressed: () async {
+                        print('log');
+                        await login(
+                          emailController.text,
+                          passwordController.text,
+                          context,
                         );
                       },
                       style: ElevatedButton.styleFrom(

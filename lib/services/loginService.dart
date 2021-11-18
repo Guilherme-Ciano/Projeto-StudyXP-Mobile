@@ -35,13 +35,19 @@ Future login(
       SharedPreferences prefs = await SharedPreferences.getInstance();
       prefs.setString('User', email);
       prefs.setString('UserPass', password);
+
+      List<dynamic> resultado = jsonDecode(res.body);
+      print(resultado[0]);
+      List<Aluno> al = resultado
+          .map(
+            (dynamic item) => Aluno.fromJson(item),
+          )
+          .toList();
       return Navigator.push(
         context,
         MaterialPageRoute(
           builder: (context) => MyHomePageAluno(
-            aluno: Aluno.fromJson(
-              jsonDecode(res.body),
-            ),
+            aluno: al[0],
           ),
         ),
       );
